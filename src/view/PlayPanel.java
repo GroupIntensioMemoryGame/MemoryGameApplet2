@@ -11,9 +11,7 @@ import controller.SimonSaysController;
 
 public class PlayPanel extends JFrame implements ActionListener
 {
-    private SimonSaysController game = new SimonSaysController();
-    
-    public PlayPanel(Player playa, int numObjects, String layout, int size, ArrayList<String> colors, ArrayList<String> shapes){
+    public PlayPanel(Player player, int numObjects, String layout, int size, ArrayList<String> colors, ArrayList<String> shapes){
         super("Simon Says");
         
         
