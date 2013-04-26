@@ -14,9 +14,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import controller.SimonSaysController;
+
+import model.Player;
+
 public class LoginPanel extends JFrame implements ActionListener
 {
-    public LoginPanel(){
+    Player play;
+    public LoginPanel(final SimonSaysController sscgame){
         super("Simon Says");
         
         JPanel lg = new JPanel(new BorderLayout());
@@ -26,7 +31,7 @@ public class LoginPanel extends JFrame implements ActionListener
         
         
         JLabel lblName = new JLabel("Please Enter Username to begin:");
-        JTextField txtName = new JTextField(15);
+        final JTextField txtName = new JTextField(15);
         
         JButton loginButton = new JButton("Login");
         loginButton.addActionListener(new ActionListener(){
@@ -34,6 +39,16 @@ public class LoginPanel extends JFrame implements ActionListener
                 // check if login is valid
                 // if valid go to options screen
                 // if not say not valid login
+                
+                String input = txtName.getText();
+                play = sscgame.login(input);
+                if(play != null){
+                    OptionsPanel op = new OptionsPanel(play, sscgame);
+                    setVisible(false);
+                }
+                else{
+                    //say username does not exist
+                }
             }
         });
         
@@ -41,7 +56,7 @@ public class LoginPanel extends JFrame implements ActionListener
         createButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 // bring up create new user gui
-                NewUserPanel newUser = new NewUserPanel();
+                NewUserPanel newUser = new NewUserPanel(sscgame);
                 setVisible(false);
             }
         });

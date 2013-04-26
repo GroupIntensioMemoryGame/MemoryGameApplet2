@@ -4,6 +4,8 @@ import java.applet.Applet;
 import javax.swing.SwingUtilities;
 import javax.swing.JApplet;
 
+import controller.SimonSaysController;
+
 public class SimonSays extends Applet
 {
     public void init(){
@@ -19,7 +21,8 @@ public class SimonSays extends Applet
     }
     
     private void createGUI(){
-        LoginPanel login = new LoginPanel();
+        final SimonSaysController sscgame = new SimonSaysController();
+        LoginPanel login = new LoginPanel(sscgame);
     }
 }
 

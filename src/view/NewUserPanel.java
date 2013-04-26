@@ -11,9 +11,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controller.SimonSaysController;
+
+import model.Player;
+
 public class NewUserPanel extends JFrame implements ActionListener
 {
-    public NewUserPanel(){
+    Player play;
+    public NewUserPanel(final SimonSaysController sscgame){
         super("Create User");
         
         JPanel cUser1 = new JPanel(new FlowLayout(FlowLayout.CENTER, 20,50));
@@ -27,8 +32,14 @@ public class NewUserPanel extends JFrame implements ActionListener
                 //add user to files
                 // go to options menu
                 String name = txtName.getText();
-                OptionsPanel op = new OptionsPanel(name);
-                setVisible(false);
+                play = sscgame.createUser(name);
+                if(play != null){
+                    OptionsPanel op = new OptionsPanel(play, sscgame);
+                    setVisible(false);
+                }
+                else{
+                    // not valid username
+                }
             }
         });
         

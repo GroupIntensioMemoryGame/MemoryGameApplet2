@@ -17,6 +17,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+import controller.SimonSaysController;
+
+import model.Player;
+
 public class OptionsPanel extends JFrame implements ActionListener
 {
     
@@ -25,7 +29,7 @@ public class OptionsPanel extends JFrame implements ActionListener
     final ArrayList<String> selectedShapes = new ArrayList<String>();
     JButton play = new JButton("Play!");
     
-    public OptionsPanel(String name){
+    public OptionsPanel(Player player, final SimonSaysController sscgame){
         super("Options");
         
 
@@ -37,13 +41,13 @@ public class OptionsPanel extends JFrame implements ActionListener
         JPanel layout = new JPanel(new GridLayout(2,2));
        
        // create option frames 
-        JLabel userName = new JLabel("UserName: " + name);
+        JLabel userName = new JLabel("UserName: " + player.getName());
         
         JButton logout = new JButton("Logout");
         logout.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 //go to home login screen
-                LoginPanel login = new LoginPanel();
+                LoginPanel login = new LoginPanel(sscgame);
                 setVisible(false);
             }
         });
